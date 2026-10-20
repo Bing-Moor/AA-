@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="fGcZtFQDwDojVUM8wEn45v">
+<head data-page-node-id="wFCMlEICwinHWrCIKAFOzI">
+<meta charset="UTF-8" data-page-node-id="SS6YfJ53oc5eNgSRdV8JQK" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="aBPgq7TP6vxetbK1hRm1HB" />
+<title>AI 行业日报 · 5 分钟看懂今天 AI 圈发生了什么</title>
+<style>
+  :root{
+    --bg:#eef3fb;
+    --bg-2:#f7f9fd;
+    --ink:#0d1526;
+    --ink-2:#46566e;
+    --ink-3:#8b9cb4;
+    --line:#e2eaf7;
+    --line-2:#eef3fa;
+    --brand:#4f46e5;
+    --brand-2:#7c3aed;
+    --brand-soft:#ecefff;
+    --cyan:#06b6d4;
+    --danger:#ef4444;
+    --danger-soft:#feecec;
+    --warn:#d97706;
+    --warn-soft:#fff5e6;
+    --ok:#0b8f68;
+    --ok-soft:#e6f8f1;
+    --radius:20px;
+    --radius-sm:12px;
+    --shadow-sm:0 1px 2px rgba(15,23,42,.04), 0 2px 6px -2px rgba(15,23,42,.05);
+    --shadow-md:0 1px 2px rgba(15,23,42,.04), 0 14px 30px -16px rgba(23,37,84,.20);
+    --shadow-lg:0 2px 4px rgba(15,23,42,.05), 0 28px 56px -24px rgba(23,37,84,.32);
+    --font:"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Consolas,"Courier New",monospace;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+
+  body{
+    font-family:var(--font);
+    color:var(--ink);
+    background:
+      radial-gradient(1100px 620px at 10% -12%, #ffffff 0%, rgba(255,255,255,0) 60%),
+      radial-gradient(1000px 600px at 100% -6%, #e3e8ff 0%, rgba(227,232,255,0) 56%),
+      radial-gradient(900px 620px at 90% 112%, #dff5fc 0%, rgba(223,245,252,0) 58%),
+      linear-gradient(168deg,var(--bg-2) 0%, var(--bg) 52%, #e7eef9 100%);
+    min-height:100%;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:24px;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;inset:0;pointer-events:none;
+    background-image:
+      linear-gradient(to right, rgba(79,70,229,.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(79,70,229,.06) 1px, transparent 1px);
+    background-size:54px 54px;
+    -webkit-mask-image:radial-gradient(120% 100% at 50% 0%, #000 10%, rgba(0,0,0,.35) 56%, transparent 86%);
+    mask-image:radial-gradient(120% 100% at 50% 0%, #000 10%, rgba(0,0,0,.35) 56%, transparent 86%);
+    opacity:.8;
+  }
+
+  .app{
+    position:relative;
+    width:100%;
+    max-width:1560px;
+    /* 用 auto margin 居中：内容比视口高/宽时自动收敛为 0，不会被裁掉顶部 */
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    animation:rise .7s cubic-bezier(.22,.68,.36,1) both;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+
+  /* ================= 封面风标题区 ================= */
+  .hero{
+    position:relative;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:28px;
+    align-items:center;
+    padding:22px 30px 24px;
+    border:1px solid #dbe4f6;
+    border-radius:24px;
+    background:
+      radial-gradient(680px 300px at 0% 0%, rgba(124,58,237,.10), rgba(124,58,237,0) 62%),
+      radial-gradient(620px 320px at 88% 118%, rgba(6,182,212,.13), rgba(6,182,212,0) 62%),
+      linear-gradient(120deg,#f2f4ff 0%, #ffffff 46%, #eefbfe 100%);
+    box-shadow:var(--shadow-lg);
+    overflow:hidden;
+  }
+  /* 顶部彩色光带 */
+  .hero::before{
+    content:"";position:absolute;left:0;right:0;top:0;height:5px;
+    background:linear-gradient(90deg,#4f46e5,#7c3aed 32%,#2563eb 58%,#06b6d4 82%,#22d3ee);
+  }
+  /* 背景巨大描边水印 */
+  .hero::after{
+    content:"AI";position:absolute;right:212px;top:-46px;
+    font-size:210px;font-weight:900;letter-spacing:-14px;line-height:1;
+    color:transparent;-webkit-text-stroke:1.6px rgba(79,70,229,.09);
+    pointer-events:none;
+  }
+  .hero > *{position:relative;z-index:1;}
+
+  .kicker{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
+  .kicker-badge{
+    display:inline-flex;align-items:center;gap:7px;
+    height:27px;padding:0 12px;border-radius:9px;
+    background:linear-gradient(120deg,#4f46e5,#7c3aed 60%,#06b6d4);
+    color:#fff;font-size:11.5px;font-weight:800;letter-spacing:2px;
+    box-shadow:0 8px 18px -10px rgba(79,70,229,.9);
+  }
+  .kicker-date{
+    font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink-2);
+    background:#fff;border:1px solid var(--line);border-radius:9px;padding:4px 10px;
+  }
+  .live{display:inline-flex;align-items:center;gap:6px;color:var(--ok);font-weight:700;font-size:12px;}
+  .live i{width:7px;height:7px;border-radius:50%;background:var(--ok);animation:pulse 2s infinite;}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(11,143,104,.5);}
+    70%{box-shadow:0 0 0 9px rgba(11,143,104,0);}
+    100%{box-shadow:0 0 0 0 rgba(11,143,104,0);}
+  }
+
+  .hero-title{
+    font-size:clamp(40px,4.1vw,64px);
+    font-weight:900;
+    letter-spacing:-2px;
+    line-height:1.04;
+    padding-bottom:8px;
+    background:linear-gradient(98deg,#151a3a 0%,#3d34c9 38%,#7c3aed 60%,#0891b2 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 6px 14px rgba(79,70,229,.16));
+  }
+  .hero-title .accent{
+    position:relative;display:inline-block;
+  }
+  .hero-title .accent::after{
+    content:"";position:absolute;left:0;right:2px;bottom:6px;height:9px;
+    background:linear-gradient(90deg,rgba(251,191,36,.85),rgba(6,182,212,.55));
+    border-radius:5px;z-index:-1;opacity:.75;
+  }
+
+  .hero-sub{
+    display:flex;align-items:center;gap:10px;
+    font-size:clamp(15px,1.15vw,18.5px);
+    font-weight:600;color:var(--ink-2);letter-spacing:.2px;
+    margin-bottom:13px;
+  }
+  .hero-sub .bar{width:4px;height:19px;border-radius:3px;background:linear-gradient(180deg,var(--brand-2),var(--cyan));}
+  .hero-sub em{
+    font-style:normal;font-weight:800;color:var(--ink);
+    background:linear-gradient(180deg,transparent 58%,rgba(251,191,36,.6) 58%);
+    padding:0 2px;
+  }
+
+  .hero-tags{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .hero-tags span{
+    font-size:12px;font-weight:600;color:var(--brand);
+    background:#fff;border:1px solid #dfe5fb;border-radius:8px;
+    padding:4px 10px;box-shadow:var(--shadow-sm);
+  }
+  .hero-tags span.hot{color:var(--danger);border-color:#fadede;background:#fff7f7;}
+
+  /* 右侧阅读进度环 */
+  .hero-right{display:flex;align-items:center;gap:18px;}
+  .ring-box{position:relative;width:112px;height:112px;flex:0 0 auto;}
+  .ring-box svg{width:100%;height:100%;transform:rotate(-90deg);display:block;}
+  .ring-bg{fill:none;stroke:#e6ecf9;stroke-width:9;}
+  .ring-fg{
+    fill:none;stroke:url(#ringGrad);stroke-width:9;stroke-linecap:round;
+    stroke-dasharray:314.16;stroke-dashoffset:314.16;
+    transition:stroke-dashoffset .6s cubic-bezier(.22,.68,.36,1);
+  }
+  .ring-text{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:1px;
+  }
+  .ring-text b{font-family:var(--mono);font-size:23px;font-weight:800;letter-spacing:-.5px;color:var(--ink);}
+  .ring-text span{font-size:10.5px;font-weight:700;letter-spacing:1.4px;color:var(--ink-3);}
+
+  .hero-stats{display:flex;flex-direction:column;gap:8px;}
+  .hero-stats .hs{
+    background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:8px 13px;box-shadow:var(--shadow-sm);min-width:132px;
+  }
+  .hero-stats .hs .k{font-size:10.5px;color:var(--ink-3);font-weight:600;margin-bottom:2px;}
+  .hero-stats .hs .v{font-family:var(--mono);font-size:15px;font-weight:800;color:var(--ink);}
+  .hero-stats .hs .v small{font-family:var(--font);font-size:10.5px;color:var(--ink-3);margin-left:2px;font-weight:600;}
+
+  /* ================= 今日重点摘要 ================= */
+  .summary{
+    position:relative;
+    display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;
+    background:linear-gradient(100deg, rgba(79,70,229,.06), rgba(6,182,212,.05) 58%, rgba(255,255,255,0) 100%), #fff;
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:15px 24px;box-shadow:var(--shadow-md);overflow:hidden;
+  }
+  .summary::after{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:linear-gradient(180deg,var(--brand-2),var(--cyan));
+  }
+  .summary-label{display:flex;flex-direction:column;gap:4px;padding-right:22px;border-right:1px dashed #dbe4f2;}
+  .summary-label span{font-size:11.5px;font-weight:800;letter-spacing:1.8px;color:var(--brand);}
+  .summary-label strong{font-size:14.5px;font-weight:700;white-space:nowrap;}
+  .summary-list{display:grid;grid-template-columns:repeat(3,1fr);gap:6px 24px;}
+  .summary-item{display:flex;gap:9px;align-items:flex-start;}
+  .summary-item .idx{
+    flex:0 0 auto;width:19px;height:19px;margin-top:1px;border-radius:6px;
+    background:var(--brand-soft);color:var(--brand);
+    font-size:11px;font-weight:800;font-family:var(--mono);display:grid;place-items:center;
+  }
+  .summary-item p{font-size:13px;line-height:1.6;color:var(--ink-2);}
+  .summary-item p em{
+    font-style:normal;font-weight:800;color:var(--ink);
+    background:linear-gradient(180deg,transparent 62%,rgba(99,102,241,.24) 62%);
+  }
+
+  /* ================= 主体两栏 ================= */
+  .layout{
+    display:grid;
+    grid-template-columns:minmax(0,1.78fr) minmax(320px,.92fr);
+    gap:16px;align-items:start;
+  }
+  .col-title{display:flex;align-items:center;gap:9px;margin-bottom:11px;padding-left:2px;}
+  .col-title h2{font-size:15px;font-weight:800;letter-spacing:.5px;}
+  .col-title .count{
+    font-family:var(--mono);font-size:11.5px;font-weight:800;color:var(--brand);
+    background:var(--brand-soft);border-radius:6px;padding:2px 7px;
+  }
+  .col-title .line{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);}
+
+  /* --- 重要程度筛选 --- */
+  .filters{
+    display:inline-flex;align-items:center;gap:4px;flex:0 0 auto;
+    padding:4px;border-radius:13px;
+    background:#eaeffa;border:1px solid #e0e7f6;
+    box-shadow:inset 0 1px 2px rgba(23,37,84,.05);
+  }
+  .filter-btn{
+    display:inline-flex;align-items:center;gap:7px;
+    height:31px;padding:0 14px;border-radius:10px;
+    border:1px solid transparent;background:transparent;
+    font-family:var(--font);font-size:12.5px;font-weight:700;letter-spacing:.2px;
+    color:var(--ink-3);cursor:pointer;white-space:nowrap;
+    transition:background .22s ease, color .22s ease, box-shadow .22s ease, transform .18s ease;
+  }
+  .filter-btn i{width:6px;height:6px;border-radius:50%;flex:0 0 auto;transition:background .22s ease, opacity .22s ease;}
+  .filter-btn[data-filter="all"]  i{background:#4f46e5;}
+  .filter-btn[data-filter="high"] i{background:#ef4444;}
+  .filter-btn[data-filter="mid"]  i{background:#f59e0b;}
+  .filter-btn:hover{color:var(--brand);background:rgba(255,255,255,.85);}
+  .filter-btn:active{transform:scale(.97);}
+  .filter-btn:focus-visible{outline:2px solid var(--brand);outline-offset:2px;}
+
+  /* 选中态：渐变实底 + 投影，高亮明显 */
+  .filter-btn.is-active{
+    background:linear-gradient(120deg,#4f46e5,#7c3aed 62%,#6d28d9);
+    color:#fff;
+    box-shadow:0 10px 20px -10px rgba(79,70,229,.95), inset 0 1px 0 rgba(255,255,255,.28);
+  }
+  .filter-btn.is-active i{background:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.35);}
+  .filter-btn.is-active:hover{color:#fff;background:linear-gradient(120deg,#4f46e5,#7c3aed 62%,#6d28d9);}
+
+  /* 被筛选条件排除的元素 */
+  .is-hidden{display:none !important;}
+
+  .news{display:flex;flex-direction:column;gap:14px;}
+
+  .card{
+    position:relative;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-sm);
+    transition:transform .28s cubic-bezier(.22,.68,.36,1), box-shadow .28s, border-color .28s, background .28s;
+    overflow:hidden;
+    animation:cardIn .55s cubic-bezier(.22,.68,.36,1) both;
+  }
+  .card:nth-child(1){animation-delay:.06s;}
+  .card:nth-child(2){animation-delay:.14s;}
+  .card:nth-child(3){animation-delay:.22s;}
+  @keyframes cardIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+
+  .card::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:var(--level-color,var(--brand));opacity:.85;transition:width .28s;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#d6e1f5;}
+  .card[data-level="high"]{--level-color:#ef4444;}
+  .card[data-level="mid"]{--level-color:#f59e0b;}
+  .card[data-level="low"]{--level-color:#0ea5e9;}
+
+  .tag{
+    display:inline-flex;align-items:center;gap:6px;
+    height:25px;padding:0 10px;border-radius:8px;
+    font-size:11.5px;font-weight:800;letter-spacing:.3px;border:1px solid transparent;
+  }
+  .tag i{width:6px;height:6px;border-radius:50%;background:currentColor;}
+  .tag-high{color:var(--danger);background:var(--danger-soft);border-color:#fbdede;}
+  .tag-mid{color:var(--warn);background:var(--warn-soft);border-color:#fbe8cc;}
+  .tag-low{color:#0284c7;background:#e8f5fd;border-color:#d6ebfa;}
+
+  .news-title{font-weight:800;line-height:1.42;letter-spacing:.2px;color:var(--ink);}
+  .news-desc{color:var(--ink-2);}
+
+  .card-bottom{
+    display:flex;align-items:center;gap:12px;
+    padding-top:12px;border-top:1px dashed var(--line);
+  }
+  .meta{display:flex;align-items:center;gap:9px;font-size:11.5px;color:var(--ink-3);min-width:0;flex-wrap:wrap;}
+  .meta .src{color:var(--ink-2);font-weight:600;white-space:nowrap;}
+  .meta .sep{width:3px;height:3px;border-radius:50%;background:#cbd6e6;flex:0 0 auto;}
+  .meta .time{font-family:var(--mono);letter-spacing:.4px;white-space:nowrap;}
+  .meta .cat{white-space:nowrap;color:var(--brand);background:var(--brand-soft);border-radius:6px;padding:2px 7px;font-weight:700;}
+
+  /* --- 阅读完成按钮 --- */
+  .btn-read{
+    margin-left:auto;flex:0 0 auto;
+    display:inline-flex;align-items:center;gap:7px;
+    height:36px;padding:0 16px;border-radius:11px;
+    border:1px solid var(--line);background:#fff;color:var(--ink-2);
+    font-family:var(--font);font-size:12.5px;font-weight:700;
+    cursor:pointer;transition:all .22s ease;white-space:nowrap;
+  }
+  .btn-read:hover{border-color:#c7d2e8;background:#f8faff;color:var(--brand);transform:translateY(-1px);}
+  .btn-read:active{transform:translateY(0) scale(.98);}
+  .btn-read:focus-visible{outline:2px solid var(--brand);outline-offset:2px;}
+  .btn-icon{width:15px;height:15px;flex:0 0 auto;overflow:visible;}
+  .btn-icon .ring{fill:none;stroke:currentColor;stroke-width:2;transition:all .25s ease;}
+  .btn-icon .tick{
+    fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:15;stroke-dashoffset:15;opacity:0;
+    transition:stroke-dashoffset .3s ease .05s, opacity .1s ease .05s;
+  }
+  .btn-read.is-done{
+    background:linear-gradient(180deg,#eafaf3,#dcf6ec);
+    border-color:#b6ead8;color:var(--ok);
+  }
+  .btn-read.is-done .ring{fill:var(--ok);stroke:var(--ok);}
+  .btn-read.is-done .tick{stroke-dashoffset:0;opacity:1;}
+  .btn-read.is-done:hover{background:linear-gradient(180deg,#e2f8f0,#d3f3e7);color:var(--ok);}
+
+  /* --- 卡片右上角对勾 --- */
+  .done-check{
+    position:absolute;top:14px;right:14px;
+    width:27px;height:27px;border-radius:50%;
+    background:linear-gradient(145deg,#16d8a3,#0b8f68);
+    display:grid;place-items:center;
+    box-shadow:0 8px 16px -7px rgba(11,143,104,.9), 0 0 0 3px rgba(16,185,129,.16);
+    opacity:0;transform:scale(.4) rotate(-28deg);
+    transition:opacity .2s ease, transform .34s cubic-bezier(.34,1.56,.64,1);
+    pointer-events:none;z-index:3;
+  }
+  .done-check svg{width:15px;height:15px;display:block;}
+  .done-check path{
+    fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:16;stroke-dashoffset:16;
+  }
+  .card.is-done .done-check{opacity:1;transform:scale(1) rotate(0);}
+  .card.is-done .done-check path{animation:drawTick .34s ease .12s forwards;}
+  @keyframes drawTick{to{stroke-dashoffset:0;}}
+  .card.is-done .done-check::after{
+    content:"";position:absolute;inset:0;border-radius:50%;
+    border:2px solid rgba(16,185,129,.55);
+    animation:ping .65s ease-out;
+  }
+  @keyframes ping{from{transform:scale(1);opacity:.85;}to{transform:scale(2.1);opacity:0;}}
+
+  .card.is-done{border-color:#cdeee0;background:linear-gradient(180deg,#f8fefb,#fff);}
+  .card.is-done::before{width:4px;opacity:.55;}
+  .card.is-done .news-title{color:var(--ink-2);}
+  .card.is-done .news-desc{color:#7b8ba1;}
+
+  /* ================= 头条卡片（最大） ================= */
+  .card-featured{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 158px;
+    gap:24px;
+    padding:22px 24px 20px;
+    background:
+      radial-gradient(560px 240px at 0% 0%, rgba(239,68,68,.07), rgba(239,68,68,0) 60%),
+      radial-gradient(520px 260px at 100% 100%, rgba(124,58,237,.09), rgba(124,58,237,0) 62%),
+      linear-gradient(180deg,#ffffff,#fbfcff);
+    border-color:#d9e2f6;
+    box-shadow:0 1px 2px rgba(15,23,42,.04), 0 18px 40px -22px rgba(23,37,84,.30);
+  }
+  .card-featured::before{width:5px;opacity:1;}
+  .card-featured .card-main{display:flex;flex-direction:column;min-width:0;}
+  .card-featured .card-top{display:flex;align-items:center;gap:9px;margin-bottom:10px;flex-wrap:wrap;}
+  .card-featured .tag{height:28px;font-size:12.5px;padding:0 12px;}
+  .ribbon{
+    display:inline-flex;align-items:center;gap:6px;
+    height:28px;padding:0 12px;border-radius:8px;
+    background:linear-gradient(120deg,#1e1b4b,#4f46e5 55%,#7c3aed);
+    color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.6px;
+    box-shadow:0 10px 20px -12px rgba(79,70,229,.95);
+  }
+  .ribbon svg{width:12px;height:12px;}
+  .card-featured .news-title{font-size:clamp(20px,1.75vw,26px);letter-spacing:-.3px;margin-bottom:8px;padding-right:6px;}
+  .card-featured .news-desc{font-size:13.8px;line-height:1.72;}
+  .card-featured .card-bottom{margin-top:auto;}
+
+  .metric{
+    display:flex;flex-direction:column;justify-content:center;gap:9px;
+    border-radius:16px;padding:14px 15px;
+    background:linear-gradient(165deg,#f4f6ff,#eef6ff 55%,#eafbfd);
+    border:1px solid #dde5fa;
+    box-shadow:inset 0 1px 0 #fff;
+  }
+  .metric .k{font-size:11px;font-weight:700;letter-spacing:.4px;color:var(--ink-3);}
+  .metric .v{
+    font-family:var(--mono);font-size:30px;font-weight:800;letter-spacing:-1px;line-height:1;
+    background:linear-gradient(120deg,#4f46e5,#7c3aed 55%,#0891b2);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .metric .track{height:6px;border-radius:99px;background:#e3e9f8;overflow:hidden;}
+  .metric .fill{
+    height:100%;width:0;border-radius:99px;
+    background:linear-gradient(90deg,#7c3aed,#06b6d4);
+    transition:width 1s cubic-bezier(.22,.68,.36,1);
+  }
+  .metric .note{font-size:10.5px;color:var(--ink-3);font-weight:600;}
+
+  /* ================= 次要卡片（并列两栏） ================= */
+  .news-sub{display:flex;gap:14px;align-items:stretch;}
+  .news-sub .card{flex:1 1 0;min-width:0;display:flex;flex-direction:column;padding:15px 17px 14px;}
+  .news-sub .card-top{display:flex;align-items:center;gap:8px;margin-bottom:9px;}
+  .news-sub .news-title{font-size:16.5px;margin-bottom:7px;padding-right:30px;}
+  .news-sub .news-desc{font-size:12.8px;line-height:1.66;}
+  .news-sub .card-bottom{margin-top:auto;}
+  .news-sub .meta .src{max-width:96px;overflow:hidden;text-overflow:ellipsis;}
+
+  /* 筛选后只剩一张次级卡片时：放大排版，避免宽卡片显得空 */
+  .news-sub.is-single .card{padding:20px 22px 18px;}
+  .news-sub.is-single .news-title{font-size:19px;padding-right:34px;}
+  .news-sub.is-single .news-desc{font-size:13.4px;line-height:1.7;}
+
+  /* ================= 趋势面板 ================= */
+  .panel{
+    background:linear-gradient(180deg,#fff,#fdfeff);
+    border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow-md);padding:17px 19px 19px;
+  }
+  .panel-head{display:flex;align-items:center;gap:10px;}
+  .panel-head h2{font-size:15px;font-weight:800;letter-spacing:.5px;}
+  .panel-head .pill{
+    margin-left:auto;font-family:var(--mono);font-size:11px;font-weight:700;
+    color:var(--ink-3);background:var(--line-2);border-radius:7px;padding:3px 9px;
+  }
+  .panel-sub{font-size:11.5px;color:var(--ink-3);margin:4px 0 14px;}
+
+  .chart{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:9px;
+    height:96px;padding:0 2px;border-bottom:1px solid var(--line);margin-bottom:9px;
+  }
+  .bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;height:100%;justify-content:flex-end;}
+  .bar{
+    width:100%;max-width:26px;border-radius:7px 7px 3px 3px;height:0;
+    background:linear-gradient(180deg,#8b95f7,#4f46e5);
+    transition:height .8s cubic-bezier(.22,.68,.36,1);
+    box-shadow:0 6px 12px -8px rgba(79,70,229,.7);
+  }
+  .bar-wrap:last-child .bar{background:linear-gradient(180deg,#4be0f0,#06b6d4);box-shadow:0 8px 16px -8px rgba(6,182,212,.8);}
+  .bar-x{font-size:10.5px;color:var(--ink-3);}
+  .bar-wrap:last-child .bar-x{color:var(--brand);font-weight:800;}
+
+  .chart-foot{display:flex;align-items:baseline;gap:8px;margin-bottom:15px;}
+  .chart-foot .val{font-family:var(--mono);font-size:20px;font-weight:800;}
+  .chart-foot .delta{font-size:12px;font-weight:800;color:var(--ok);background:var(--ok-soft);border-radius:6px;padding:2px 7px;}
+  .chart-foot .note{margin-left:auto;font-size:11px;color:var(--ink-3);}
+
+  .sub-title{font-size:11.5px;font-weight:800;letter-spacing:1.2px;color:var(--ink-3);margin-bottom:10px;}
+  .topics{display:flex;flex-direction:column;gap:11px;margin-bottom:16px;}
+  .topic{display:grid;grid-template-columns:76px 1fr 36px;align-items:center;gap:10px;}
+  .topic-name{font-size:12.5px;font-weight:600;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .topic-track{height:7px;border-radius:99px;background:#eef3fa;overflow:hidden;}
+  .topic-fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#8b95f7,#4f46e5);transition:width .9s cubic-bezier(.22,.68,.36,1);}
+  .topic:nth-child(2) .topic-fill{background:linear-gradient(90deg,#67e8f9,#06b6d4);}
+  .topic:nth-child(3) .topic-fill{background:linear-gradient(90deg,#fbbf24,#f59e0b);}
+  .topic:nth-child(4) .topic-fill{background:linear-gradient(90deg,#a5b4fc,#818cf8);}
+  .topic-val{font-family:var(--mono);font-size:11.5px;font-weight:800;color:var(--ink-2);text-align:right;}
+
+  .divider{height:1px;background:var(--line);margin:15px 0;}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .stat{background:linear-gradient(180deg,#fafcff,#f4f8fe);border:1px solid var(--line-2);border-radius:var(--radius-sm);padding:10px 12px;}
+  .stat .k{font-size:11.5px;color:var(--ink-3);margin-bottom:5px;white-space:nowrap;}
+  .stat .v{font-family:var(--mono);font-size:17px;font-weight:800;}
+  .stat .v small{font-family:var(--font);font-size:11px;font-weight:600;color:var(--ink-3);margin-left:3px;}
+
+  .footnote{text-align:center;font-size:11.5px;color:var(--ink-3);letter-spacing:.3px;}
+
+  /* ================= 响应式：平板 / 窄屏兜底 ================= */
+  @media (max-width:1180px){
+    .layout{grid-template-columns:1fr;}          /* 趋势面板自然落到新闻列表下方 */
+    .hero{grid-template-columns:1fr;}
+    .hero::after{display:none;}
+    .summary{grid-template-columns:1fr;}
+    .summary-label{border-right:none;border-bottom:1px dashed #dbe4f2;padding:0 0 12px;}
+    .summary-list{grid-template-columns:1fr;}
+    .news-sub{flex-direction:column;}            /* 次级卡片改单列 */
+    .news-sub .card{flex:0 0 auto;}              /* 列方向下取消 flex-basis:0，防高度塌陷 */
+    .card-featured{grid-template-columns:1fr;}
+  }
+
+  /* ================= 响应式：手机 ================= */
+  @media (max-width:760px){
+    body{padding:12px;}
+    .app{gap:12px;}
+
+    /* --- 2. 标题区不挤压 --- */
+    .hero{padding:16px 16px 18px;border-radius:18px;gap:16px;}
+    .hero-title{font-size:clamp(28px,8.8vw,40px);letter-spacing:-1px;padding-bottom:4px;}
+    .hero-title .accent::after{bottom:3px;height:7px;}
+    .hero-sub{display:block;font-size:14.5px;line-height:1.58;}
+    .hero-sub .bar{display:inline-block;vertical-align:-3px;margin-right:7px;}
+    .kicker{gap:8px;margin-bottom:10px;}
+    .kicker-badge{letter-spacing:1.4px;}
+    .hero-tags{gap:6px;}
+    .hero-tags span{font-size:11.5px;padding:3px 9px;}
+
+    /* 进度环 + 数据卡：并排铺满 */
+    .hero-right{gap:13px;width:100%;}
+    .ring-box{width:86px;height:86px;}
+    .ring-text b{font-size:19px;}
+    .ring-text span{font-size:9.5px;letter-spacing:1px;}
+    .hero-stats{flex:1;flex-direction:row;gap:8px;min-width:0;}
+    .hero-stats .hs{flex:1;min-width:0;padding:8px 10px;}
+    .hero-stats .hs .v{font-size:14px;}
+
+    /* 摘要 */
+    .summary{padding:14px 16px;border-radius:16px;}
+    .summary-label{padding-bottom:10px;}
+    .summary-item p{font-size:12.5px;line-height:1.58;}
+
+    /* --- 1 & 3. 列表标题与筛选按钮：各自占满整行，不挤不换行混乱 --- */
+    .col-title{flex-wrap:wrap;row-gap:9px;}
+    .col-title .line{display:none;}
+    .filters{width:100%;justify-content:stretch;}
+    .filter-btn{flex:1 1 0;justify-content:center;padding:0 8px;font-size:12px;}
+
+    /* --- 卡片：单列 + 按钮区独立成行 --- */
+    .card-featured{padding:16px 16px 15px;gap:14px;border-radius:16px;}
+    .card-featured .news-title{font-size:19px;letter-spacing:-.2px;}
+    .card-featured .news-desc{font-size:13px;line-height:1.68;}
+    .news-sub .card,
+    .news-sub.is-single .card{padding:15px 16px 14px;border-radius:16px;}
+    .news-sub .news-title,
+    .news-sub.is-single .news-title{font-size:17px;padding-right:28px;}
+    .news-sub .news-desc,
+    .news-sub.is-single .news-desc{font-size:13px;line-height:1.66;}
+
+    /* 按钮独占一行并铺满，彻底避免换行错乱 */
+    .card-bottom{flex-direction:column;align-items:stretch;gap:11px;}
+    .meta{width:100%;row-gap:6px;}
+    .btn-read{margin-left:0;width:100%;justify-content:center;height:42px;font-size:13.5px;}
+
+    .metric{padding:12px 14px;border-radius:13px;}
+    .metric .v{font-size:26px;}
+
+    /* --- 4. 趋势面板：DOM 顺序在新闻列表之后，单列布局下自动排到下方 --- */
+    .panel{padding:15px 16px 17px;}
+    .panel-sub{margin-bottom:12px;}
+    .stats{grid-template-columns:1fr 1fr;gap:9px;}
+
+    .footnote{font-size:11px;line-height:1.6;padding:0 6px;}
+  }
+
+  /* ================= 响应式：小屏手机 ================= */
+  @media (max-width:400px){
+    .hero-title{font-size:clamp(25px,8.4vw,33px);}
+    .hero-right{flex-direction:column;align-items:stretch;gap:10px;}
+    .ring-box{align-self:center;}
+    .hero-stats{flex-direction:row;}
+    .filter-btn{font-size:11.5px;padding:0 6px;gap:5px;}
+    .summary-item p{font-size:12px;}
+    .footnote{font-size:10.5px;}
+  }
+</style>
+</head>
+<body data-page-node-id="pOL1q5smUagBfKhU3rfRgS">
+<div class="app" data-page-node-id="RvACJkNjVb6Xq6RhjzHt7U">
+
+  <!-- ================= 封面风标题区 ================= -->
+  <header class="hero" data-page-node-id="cIGNdT7UBfwn0lPGqJ8YnX">
+    <div class="hero-left" data-page-node-id="FSxS8l8tdfb9wSVxAYTNtY">
+      <div class="kicker" data-page-node-id="AuqiriTj4aUdjnH2MPl1wh">
+        <span class="kicker-badge" data-page-node-id="gJCIuihYfMceGW5DR1qKgL">AI · DAILY</span>
+        <span class="kicker-date" data-page-node-id="w8sdHZRcQafpPFkvxyDpoE">2026-09-16 周三</span>
+        <span class="live" data-page-node-id="Ov3QYB7eVGuDTcAD88mjEg"><i data-page-node-id="WJmEsBmQ4BsZW9u2SVFCaa"></i>实时更新</span>
+        <span class="kicker-date" data-page-node-id="2ryU4zgnjQyIKy8FZBPbh1">演示数据</span>
+      </div>
+
+      <h1 class="hero-title" data-page-node-id="lWZWifVQhH5n1LVGzDvfSG">AI 行业<span class="accent" data-page-node-id="ETNfmKYfz6VGFkbx3kzMC4">日报</span></h1>
+
+      <p class="hero-sub" data-page-node-id="lDWEYROT2TffMNnD6lvRkj">
+        <span class="bar" data-page-node-id="GumWN2FDweYBSBzXWtuRqv"></span>
+        <em data-page-node-id="ArSgUOGTaDLfgNPQd0WWHX">5 分钟</em>看懂今天 AI 圈发生了什么
+      </p>
+
+      <div class="hero-tags" data-page-node-id="wi9REwTDthPu6SjNG2GsCN">
+        <span class="hot" data-page-node-id="F8BT5cBbJvRfVT4cW007mz"># 推理模型</span>
+        <span data-page-node-id="70OUAIGiej8KAIET6H2IUY"># API 降价</span>
+        <span data-page-node-id="AgK3JSBXE2jN4yf4VIacPe"># AI 合规</span>
+        <span data-page-node-id="BQTL32aLNoDJLv6Av8n3ls"># 智能体</span>
+      </div>
+    </div>
+
+    <div class="hero-right" data-page-node-id="SLrzMG5ylUnUNsnGu8il5B">
+      <div class="ring-box" data-page-node-id="nSkeBlNDqcKEKEZBgWaCVx">
+        <svg viewBox="0 0 120 120" aria-hidden="true" data-page-node-id="ltBqGtgXvrHpr1zamkOZke">
+          <defs data-page-node-id="GaMXk3CV7ZcNH2VSDrWNzh">
+            <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1" data-page-node-id="eTzHass06HEFXy9nXf9b9B">
+              <stop offset="0%" stop-color="#4f46e5" data-page-node-id="3IF1C5d8yPIc3HshvqGDMc"/>
+              <stop offset="55%" stop-color="#7c3aed" data-page-node-id="FM0rzfU8OUGO1S4XPYzJXQ"/>
+              <stop offset="100%" stop-color="#06b6d4" data-page-node-id="secDwG4azqBk1ksySdGlEv"/>
+            </linearGradient>
+          </defs>
+          <circle class="ring-bg" cx="60" cy="60" r="50" data-page-node-id="kDPUujXnRyFE6fDBn1UIWY"/>
+          <circle class="ring-fg" id="ringFg" cx="60" cy="60" r="50" data-page-node-id="atwvumhspmLLz5EwurDIvv"/>
+        </svg>
+        <div class="ring-text" data-page-node-id="2AVf57DV7qh93jzx1rZbC4">
+          <b id="ringNum" data-page-node-id="OCEg88bbe8HkDhoGbs8Mp3">0/3</b>
+          <span data-page-node-id="mIDEVfQDkQ06hA7xn4RI0W">阅读进度</span>
+        </div>
+      </div>
+      <div class="hero-stats" data-page-node-id="t9YlZkZo46GmsCeAkBGsJI">
+        <div class="hs" data-page-node-id="ErNXodNhcCNbuZAO0gHUej"><div class="k" data-page-node-id="bXICTPgyJz1IvHzJfgTkBY">今日要闻</div><div class="v" data-page-node-id="cLEYvoGADzyyVCkpvgjTg4">3<small data-page-node-id="VSgoUMSwQTOZzApaDMMKDJ">条</small></div></div>
+        <div class="hs" data-page-node-id="1GUPBUfn9oYW7OGCXclRpt"><div class="k" data-page-node-id="j2ZCff7EKTySN3MGHFNWmw">预计阅读</div><div class="v" data-page-node-id="DDgdORAuRuVQemFjYwoStT">5<small data-page-node-id="BVwClJINMD4d1w2JzRa4oE">分钟</small></div></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= 今日重点摘要 ================= -->
+  <section class="summary" data-page-node-id="kFcHhuxpTqZCZiM3gqbEn7">
+    <div class="summary-label" data-page-node-id="Ef9ttUBDBBznTqegWuHheE">
+      <span data-page-node-id="dPYSndutCSv9DzAeyBdxTH">今日重点摘要</span>
+      <strong data-page-node-id="hRmR0nt30nDfMShGRKKRyo">3 条要闻 · 1 分钟读完</strong>
+    </div>
+    <div class="summary-list" data-page-node-id="OsElVCUuqQbH3E8B6OOBdF">
+      <div class="summary-item" data-page-node-id="OHEo1Wim4JIu51TI3yZMBW">
+        <span class="idx" data-page-node-id="ILj34MsLOCWXU4Bcx6gNcF">01</span>
+        <p data-page-node-id="zn99lfaCnHJpJQ4nwWE9Ct">头部厂商同日发布新一代推理模型，<em data-page-node-id="uZsMurKY3tAdWEnJHhZUo0">长链推理与代码能力</em>成为本轮竞争焦点。</p>
+      </div>
+      <div class="summary-item" data-page-node-id="cmTgXDGFYKaVVbZDR1Hqtx">
+        <span class="idx" data-page-node-id="DesWc3fLGxTw7zAgGgzQWy">02</span>
+        <p data-page-node-id="iIbZEODDjRDpiGQ7nvNojw">国内大模型 API 价格继续下探，<em data-page-node-id="k77ytSxoWykazPDMLVB6iX">推理成本同比降幅明显</em>，中小开发者受益最直接。</p>
+      </div>
+      <div class="summary-item" data-page-node-id="k5AMPaPBpRbv8tciNoZwUH">
+        <span class="idx" data-page-node-id="YKDlABGpSBo1gzfB6qgUde">03</span>
+        <p data-page-node-id="hVbhcAxiWTsmuP91isfzYr">AI 合规监管细则进入落地阶段，<em data-page-node-id="5dIAEhNtFN3viR6QpkPVVo">数据来源与内容标注</em>是近期最集中的整改项。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 主体 ================= -->
+  <div class="layout" data-page-node-id="wHOChVcdlRww533jnDCYuM">
+
+    <!-- 新闻列表 -->
+    <section class="news-col" data-page-node-id="MJODtluIbZnwtil4NMyWzD">
+      <div class="col-title" data-page-node-id="hf68VmcmhnAEBy78ZNHMgG">
+        <h2 data-page-node-id="C3SWg7DtHBuZWn4tnhyJGX">今日要闻</h2>
+        <span class="count" id="countChip" data-page-node-id="HNWl1dEpgBdc5sej7zlRny">3 条</span>
+        <span class="line" data-page-node-id="xx1r2vGAA1cIHOBgUz18gB"></span>
+        <div class="filters" id="filters" role="group" aria-label="按重要程度筛选新闻">
+          <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true"><i></i>全部</button>
+          <button class="filter-btn" type="button" data-filter="high" aria-pressed="false"><i></i>高优先级</button>
+          <button class="filter-btn" type="button" data-filter="mid" aria-pressed="false"><i></i>中优先级</button>
+        </div>
+      </div>
+
+      <div class="news" id="newsList" data-page-node-id="2LvIhClBi2B47mRHccM3Ir">
+
+        <!-- 第一条：头条，视觉最大 -->
+        <article class="card card-featured" data-level="high" data-page-node-id="DlfVnINNwArSsUMAItL2B3">
+          <span class="done-check" aria-hidden="true" data-page-node-id="SmmgG1IQF0tKk9q93BNwSJ">
+            <svg viewBox="0 0 24 24" data-page-node-id="toUvyoa7CUDaOXLBdNs3aP"><path d="M5.2 12.6l4.3 4.3L18.8 7.4" data-page-node-id="PTceO8kbA0EfwVaodcxgkv"/></svg>
+          </span>
+
+          <div class="card-main" data-page-node-id="J8g4vpjQ9VoxBBESeAzu1f">
+            <div class="card-top" data-page-node-id="2AAnwygaxE8VtVxx8MsKWI">
+              <span class="tag tag-high" data-page-node-id="z429SoeQnhvb0XoUgn12vk"><i data-page-node-id="cFidWxRO8YMPJZjOYjIZ8U"></i>重要程度 · 高</span>
+              <span class="ribbon" data-page-node-id="kOU4LsDQjrdzSpsJdSYXPR">
+                <svg viewBox="0 0 24 24" fill="#fbbf24" data-page-node-id="p7mhOh5P4fj2YlZas4w7wR"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z" data-page-node-id="BBDl1EY8ihG55yuOnLn5uG"/></svg>
+                今日头条 · 必读
+              </span>
+            </div>
+
+            <h3 class="news-title" data-page-node-id="AIjnhLpSvXFzF5P6B8Ygaz">新一代推理模型发布，数学与代码基准全面刷新</h3>
+            <p class="news-desc" data-page-node-id="vp0wB44WbVxXussoWEvG1A">
+              头部实验室凌晨放出新一代推理模型，主打「先想后答」的长链推理能力，在高等数学、竞赛级编程与多步工具调用
+              三类任务上刷新公开基准，并通过分级思考预算控制成本，轻量档位已接近上一代旗舰水平。
+            </p>
+
+            <div class="card-bottom" data-page-node-id="wQQ12eUlezYIq8WjYB2ieu">
+              <div class="meta" data-page-node-id="1rivkWaKekp4yj0eDE5OLg">
+                <span class="src" data-page-node-id="oDE2gRS7J8GlvSOe3oPH22">来源 · 官方技术博客</span>
+                <span class="sep" data-page-node-id="yLHcNKfk872cXQBrhqyxkG"></span>
+                <span class="time" data-page-node-id="Dlt0eOkSsqzccW2korHTSw">08:30</span>
+                <span class="sep" data-page-node-id="J2hFpaf66GPkCOt6zdcLoS"></span>
+                <span class="cat" data-page-node-id="ZBiA2qO4XN1XW9RWcLIcsB">模型发布</span>
+              </div>
+              <button class="btn-read" type="button" aria-pressed="false" data-page-node-id="dE4prJMiHAbBxMNix6oDgg">
+                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true" data-page-node-id="0HCB8rGNenkdszTLkCfGi0">
+                  <circle class="ring" cx="12" cy="12" r="8.4" data-page-node-id="Fzx24oCsgKP6s5MFDDl7n3"/>
+                  <path class="tick" d="M8.2 12.4l2.6 2.5 5-5.6" data-page-node-id="wzkeXFXyNZAXV8YVmpYAHa"/>
+                </svg>
+                <span class="btn-label" data-page-node-id="UoYrokoYUZNnS0QIAsG7Ia">阅读完成</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="metric" data-page-node-id="wwGqVndvT8jxMTfwYV75C9">
+            <div class="k" data-page-node-id="kqBlE5tv4talifGCZDjgTT">今日关注热度</div>
+            <div class="v" data-page-node-id="gtEIioG4rWJd0EXqW0qTVI">98.6</div>
+            <div class="track" data-page-node-id="IhVjfKq3pSIe9wvJzRGXOC"><div class="fill" data-w="98" data-page-node-id="oAJLCZxCNyIAFEmpSWYMcG"></div></div>
+            <div class="note" data-page-node-id="rz1JUSBxS7jEMYBmNTXxrM">全天最高 · 仍在上升</div>
+          </div>
+        </article>
+
+        <!-- 第二条 -->
+        <div class="news-sub" data-page-node-id="W3tDvR3s8xvp1dcHHRL30M">
+          <article class="card" data-level="mid" data-page-node-id="zvM4BBIV30E7NCw1YyYtHP">
+            <span class="done-check" aria-hidden="true" data-page-node-id="KAFr0MG8SzfOXBwR2DEUBl">
+              <svg viewBox="0 0 24 24" data-page-node-id="XoypYCIrmyNBGmsee8Ol5x"><path d="M5.2 12.6l4.3 4.3L18.8 7.4" data-page-node-id="l5v56eYAohI6h0lZ5kSGCU"/></svg>
+            </span>
+            <div class="card-top" data-page-node-id="U1pHiBC0MZaDTduHIU4EsA">
+              <span class="tag tag-mid" data-page-node-id="ZK5QmdaKDWA1iMoNjUmRtV"><i data-page-node-id="ii6aTTaMAfh6Hj66TQR71e"></i>重要程度 · 中</span>
+            </div>
+            <h3 class="news-title" data-page-node-id="ZLsDqxAX3zXfDUVsl9OLVW">大模型 API 价格再度下调，推理成本进入新区间</h3>
+            <p class="news-desc" data-page-node-id="2uGYk6tvj91Go3YiYUn7eE">
+              多家国内厂商同步调整线上定价，主力模型输入侧价格继续走低，并新增批量推理与缓存命中折扣。
+            </p>
+            <div class="card-bottom" data-page-node-id="k0QtwLt1Qm4W5AHW5lCeCc">
+              <div class="meta" data-page-node-id="Y6HpHU3XWaPUg0oriP0cTa">
+                <span class="src" data-page-node-id="JZAdpvvOPTJuPYkP84pcxB">来源 · 行业观察</span>
+                <span class="sep" data-page-node-id="OIkyBYNVdKC7QQxddNVut7"></span>
+                <span class="time" data-page-node-id="3Qq3xu5MWTEW920J8wDgdL">10:15</span>
+                <span class="sep" data-page-node-id="gsGqG7CiQjs3MeUZ7VHrtq"></span>
+                <span class="cat" data-page-node-id="1AJF9WLEV0zCCZEFy8j6xc">商业化</span>
+              </div>
+              <button class="btn-read" type="button" aria-pressed="false" data-page-node-id="8RWSSB8BjZ6lnEHYcybgUf">
+                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true" data-page-node-id="D8xickE3hXl3zapv9Kj8r8">
+                  <circle class="ring" cx="12" cy="12" r="8.4" data-page-node-id="gEsKED4Rg8FOdBN3YDFVyV"/>
+                  <path class="tick" d="M8.2 12.4l2.6 2.5 5-5.6" data-page-node-id="fWIOSlEHGmvxCCCtu5L0mN"/>
+                </svg>
+                <span class="btn-label" data-page-node-id="h7qw26kGOlPhxOMPuDmeCb">阅读完成</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- 第三条 -->
+          <article class="card" data-level="low" data-page-node-id="P08Jnd7mWIgMIRLkJ7a0gv">
+            <span class="done-check" aria-hidden="true" data-page-node-id="RgWLN8Bs8zhm4R0DP70LpV">
+              <svg viewBox="0 0 24 24" data-page-node-id="J3HxsVt9fz43HS2kB3AVem"><path d="M5.2 12.6l4.3 4.3L18.8 7.4" data-page-node-id="PXWVpI0CIuf6s14tcxupIE"/></svg>
+            </span>
+            <div class="card-top" data-page-node-id="mSL2ghKqNjDDdQ1DCc4ZJ8">
+              <span class="tag tag-low" data-page-node-id="aMaxHZ8arkNM5XkZq0sDM8"><i data-page-node-id="5cs8FB5ZkuoKalcTAgekH7"></i>重要程度 · 关注</span>
+            </div>
+            <h3 class="news-title" data-page-node-id="DQ1fp5oYHrIYZIxzTiUVOa">AI 合规细则推进落地，数据标注成高频整改项</h3>
+            <p class="news-desc" data-page-node-id="rx6HEovk1obkFQlfDteCfI">
+              训练数据来源留痕、生成内容标识、用户告知流程成为检查重点，出海团队需提前预留合规成本。
+            </p>
+            <div class="card-bottom" data-page-node-id="jOSRVGEPIEiWLU7A3mTqGN">
+              <div class="meta" data-page-node-id="bnDzhVC3kP93Lt5Fg4TXLH">
+                <span class="src" data-page-node-id="hZl6FBBQryNGzupUxB7rFX">来源 · 政策速递</span>
+                <span class="sep" data-page-node-id="ShypO136aAOeEcOjIFhwsP"></span>
+                <span class="time" data-page-node-id="Yg63qbL6l1PxlP6zLEuJZG">11:40</span>
+                <span class="sep" data-page-node-id="bwRu01q0vwcCb3IUiKQJUS"></span>
+                <span class="cat" data-page-node-id="1a4n4wccjAZyrRpaw113qH">政策合规</span>
+              </div>
+              <button class="btn-read" type="button" aria-pressed="false" data-page-node-id="RxaKTaCYmJ7cK171M9WWcH">
+                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true" data-page-node-id="7toUARnVuiGYrzBPIRiEg5">
+                  <circle class="ring" cx="12" cy="12" r="8.4" data-page-node-id="c6kmCnhz9qpToclwYoitjr"/>
+                  <path class="tick" d="M8.2 12.4l2.6 2.5 5-5.6" data-page-node-id="VyWLvOJugzbT8UZJvNw7tl"/>
+                </svg>
+                <span class="btn-label" data-page-node-id="eNXUAOfOmjfWQwhTDk0dCg">阅读完成</span>
+              </button>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 趋势面板 -->
+    <aside class="trend-col" data-page-node-id="EXrFhwSySEHtkrl1eDSKdA">
+      <div class="col-title" data-page-node-id="FqNzaOPFaicWMy9ocUOqJN">
+        <h2 data-page-node-id="Ls54RQgwdktDdKkkXAH4fP">今日趋势</h2>
+        <span class="line" data-page-node-id="8SUL1Ze71Bf5CzFXFneW31"></span>
+      </div>
+
+      <div class="panel" data-page-node-id="gADPPBAyZ7Lz2dvWlmvf2N">
+        <div class="panel-head" data-page-node-id="danydnkpiF6efVFgqHOfvb">
+          <h2 data-page-node-id="jwEjIuG3eG5piUxDCm9X8h">AI 行业热度</h2>
+          <span class="pill" data-page-node-id="aqaFRUixPKMBpG0y5G17pt">近 7 日</span>
+        </div>
+        <div class="panel-sub" data-page-node-id="bIGCEZCDuXtJCDLfdmC3Wr">综合新闻量、讨论量与搜索指数的归一化热度值</div>
+
+        <div class="chart" id="chart" data-page-node-id="OLMjwUEH2lEuoR3z6rDDWI">
+          <div class="bar-wrap" data-page-node-id="UPZ6F7zHnrEmlPnqSgMykQ"><div class="bar" data-h="42" data-page-node-id="HAUOAhdeXFYokfKTEfyT6B"></div><span class="bar-x" data-page-node-id="rfvKOQrWftbrMDFTrb3XTB">周四</span></div>
+          <div class="bar-wrap" data-page-node-id="gmEOmCtTOrVubqCcfjx4ea"><div class="bar" data-h="52" data-page-node-id="RSZWg5Y0Bvqz0ON1E1BG6U"></div><span class="bar-x" data-page-node-id="bdj51jgrwXuGhdJ2CisyCn">周五</span></div>
+          <div class="bar-wrap" data-page-node-id="GYpv6mIvnUvIuCRkI8fbLV"><div class="bar" data-h="38" data-page-node-id="BpFyfAQGpdmmjgOHyuCx0n"></div><span class="bar-x" data-page-node-id="bWZMJzrK3tf8DDg9KPESry">周六</span></div>
+          <div class="bar-wrap" data-page-node-id="jdNsMokepVUVqDdkCKX8vb"><div class="bar" data-h="57" data-page-node-id="5JH1ROS24CqWBd1BrfYcF0"></div><span class="bar-x" data-page-node-id="WT5LvPKmHrv6HHBPVnsJcV">周日</span></div>
+          <div class="bar-wrap" data-page-node-id="MkILkXWBEqW9xL7EFGAloW"><div class="bar" data-h="66" data-page-node-id="xQ2EkJ2aYJ8XMPr93Cy17J"></div><span class="bar-x" data-page-node-id="Da0rZXNWauIhvidndmxW5d">周一</span></div>
+          <div class="bar-wrap" data-page-node-id="jCZ8oqDGkWj6zsjHWBhIUQ"><div class="bar" data-h="78" data-page-node-id="NqPGQ8O3gef4UcoN4WFvIG"></div><span class="bar-x" data-page-node-id="608h1eYK58isfdTu12SmDq">周二</span></div>
+          <div class="bar-wrap" data-page-node-id="SV7QnmS0qC9mMZYICBtUYJ"><div class="bar" data-h="94" data-page-node-id="qyIhCf0tCJBdPkcgfVcZVR"></div><span class="bar-x" data-page-node-id="Y4eCmHJj1MjDxDCL7Lj4Fa">今日</span></div>
+        </div>
+        <div class="chart-foot" data-page-node-id="e66c7lf2DUv7ygWj7qVy2H">
+          <span class="val" data-page-node-id="YlNa3PSn8yzTO3Nugw798L">94.2</span>
+          <span class="delta" data-page-node-id="spVNx41jEO83kxozAafCHd">▲ 12.8%</span>
+          <span class="note" data-page-node-id="tuZHanfbNrLIFCXTppL2qU">较昨日</span>
+        </div>
+
+        <div class="sub-title" data-page-node-id="j95HNp8tomsodWh8fef0Iv">热门话题</div>
+        <div class="topics" data-page-node-id="QyrCniBjevXpwTjo2GIA9x">
+          <div class="topic" data-page-node-id="1FHQFUW6fZ55f2iLIARA4a">
+            <span class="topic-name" data-page-node-id="RGdh8BfR7j3HsKrhoqUNHG">推理模型</span>
+            <div class="topic-track" data-page-node-id="tLIzYDubFlKPjDArEejQZ2"><div class="topic-fill" data-w="92" data-page-node-id="Cwe1ixLvMp8ikKsBSme8R3"></div></div>
+            <span class="topic-val" data-page-node-id="8EU6mQ7yYzY7nUxB8XpiZa">92</span>
+          </div>
+          <div class="topic" data-page-node-id="kabhBP69IQNcfBZBxBUJNm">
+            <span class="topic-name" data-page-node-id="LLdhWEsiKDfonP2sGu9szn">推理成本</span>
+            <div class="topic-track" data-page-node-id="f7qTErJNrfsjfaBpdMk6Fz"><div class="topic-fill" data-w="78" data-page-node-id="jPKuvnTBAh66go2fl71gyk"></div></div>
+            <span class="topic-val" data-page-node-id="Rfetzw7XP1RAKH2QBL9RaB">78</span>
+          </div>
+          <div class="topic" data-page-node-id="a5XayE1VjBL3U9JsF3E8Mg">
+            <span class="topic-name" data-page-node-id="NCiyqyuQRA3JsOxEwZkQFu">AI 合规</span>
+            <div class="topic-track" data-page-node-id="JDkpD6lz2QNkCVKmku64uj"><div class="topic-fill" data-w="64" data-page-node-id="0fphqFaWG3SnND3rBDbUEn"></div></div>
+            <span class="topic-val" data-page-node-id="NSl31T22PNkJugGSvEEldd">64</span>
+          </div>
+          <div class="topic" data-page-node-id="aM8nrRFTCqlnjLBIWPT99g">
+            <span class="topic-name" data-page-node-id="5OUPHifAUx0lUo84R1ApH0">智能体</span>
+            <div class="topic-track" data-page-node-id="znsa1BaERZ3LSoQvrnBH9a"><div class="topic-fill" data-w="51" data-page-node-id="nXOdBDhDvDDK80m5gRK6Ac"></div></div>
+            <span class="topic-val" data-page-node-id="B10ED57iNwD74wNeaeSyoX">51</span>
+          </div>
+        </div>
+
+        <div class="divider" data-page-node-id="mYs2dM1FZWLmurNpyv97Gd"></div>
+
+        <div class="stats" data-page-node-id="frRoDSJnelO5MEyDih6Pe5">
+          <div class="stat" data-page-node-id="BUNWK9EvBBLLeYCvXsBsIe"><div class="k" data-page-node-id="v70Ipluba627EWrSH4UOxR">今日收录资讯</div><div class="v" data-page-node-id="J6nD522hH2ZC4Xhu9wZ1ko">248<small data-page-node-id="8I8HC30HMAN4o1ilBqPADX">条</small></div></div>
+          <div class="stat" data-page-node-id="fvSw006x2wdvGDTvbMZiBA"><div class="k" data-page-node-id="4SlzxZXsDS00zL7tGDM5PT">高重要程度占比</div><div class="v" data-page-node-id="2M0NtGtF7lgBnotMAHBFOG">31<small data-page-node-id="fT8wCGxeoomrVHbpFCLBrx">%</small></div></div>
+          <div class="stat" data-page-node-id="Z9e5YieZ70VwQOdRFmWcl6"><div class="k" data-page-node-id="mobuqiBaWoSfvZSyozyTEm">平均阅读时长</div><div class="v" data-page-node-id="ry9ViXaQ3NRmfoEMFuuhDh">3.4<small data-page-node-id="jUvmG5SKCxyXfNI1U8T652">分钟</small></div></div>
+          <div class="stat" data-page-node-id="N3cVHe6CVt44bQRa6oiKWn"><div class="k" data-page-node-id="NM0i82CGQJPHcjGJ51B9AQ">情绪倾向</div><div class="v" data-page-node-id="kNuN5JGxkIq1186PaDlEsr">偏积极</div></div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="footnote" data-page-node-id="NbUCm9M1x5CNC196BVZ9ff">本页面为看板演示，所展示内容均为示例数据，不代表真实新闻与实时行情。</div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var RING_LEN = 314.16;
+
+  /* ---------------- 元素 ---------------- */
+  var newsList = document.getElementById('newsList');
+  var cards    = Array.prototype.slice.call(newsList.querySelectorAll('.card'));
+  var ringFg   = document.getElementById('ringFg');
+  var ringNum  = document.getElementById('ringNum');
+  var total    = cards.length;
+
+  /* ---------------- 阅读进度环 ---------------- */
+  function refreshProgress() {
+    var done = cards.filter(function (c) { return c.classList.contains('is-done'); }).length;
+    ringNum.textContent = done + '/' + total;
+    ringFg.style.strokeDashoffset = RING_LEN * (1 - done / total);
+  }
+
+  /* ---------------- 阅读完成按钮 ---------------- */
+  cards.forEach(function (card) {
+    var btn   = card.querySelector('.btn-read');
+    var label = card.querySelector('.btn-label');
+    if (!btn || !label) return;
+
+    btn.addEventListener('click', function () {
+      // 1) 卡片已读状态：开 <-> 关
+      var isDone = card.classList.toggle('is-done');
+
+      // 2) 按钮自身状态与文案
+      btn.classList.toggle('is-done', isDone);
+      btn.setAttribute('aria-pressed', isDone ? 'true' : 'false');
+      label.textContent = isDone ? '已完成' : '阅读完成';
+
+      // 3) 右上角对勾（由 .is-done 驱动 CSS 显隐动画）
+      //    card.is-done -> 显示；取消 -> 隐藏
+
+      // 4) 刷新进度环
+      refreshProgress();
+    });
+  });
+
+  /* ---------------- 重要程度筛选 ---------------- */
+  var filterBtns = Array.prototype.slice.call(document.querySelectorAll('#filters .filter-btn'));
+  var countChip  = document.getElementById('countChip');
+  var subWrap    = newsList.querySelector('.news-sub');
+
+  function applyFilter(filter) {
+    // 1) 按钮高亮 / 语义状态
+    filterBtns.forEach(function (btn) {
+      var on = btn.dataset.filter === filter;
+      btn.classList.toggle('is-active', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+
+    // 2) 逐卡判断显隐（all = 全部显示；其余按 data-level 精确匹配）
+    var shown = 0;
+    cards.forEach(function (card) {
+      var visible = (filter === 'all') || (card.dataset.level === filter);
+      card.classList.toggle('is-hidden', !visible);
+      if (visible) { shown++; }
+    });
+
+    // 3) 次要卡片整组被筛掉时，把容器一起收起，避免残留一段空隙
+    var subVisible = 0;
+    subWrap.querySelectorAll('.card').forEach(function (c) {
+      if (!c.classList.contains('is-hidden')) { subVisible++; }
+    });
+    subWrap.classList.toggle('is-hidden', subVisible === 0);
+    subWrap.classList.toggle('is-single', subVisible === 1);
+
+    // 4) 同步条数角标
+    countChip.textContent = shown + ' 条';
+  }
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () { applyFilter(btn.dataset.filter); });
+  });
+
+  applyFilter('all');
+
+  /* ---------------- 图表入场动画 ---------------- */
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      document.querySelectorAll('#chart .bar').forEach(function (bar) {
+        bar.style.height = bar.dataset.h + '%';
+      });
+      document.querySelectorAll('.topic-fill').forEach(function (fill) {
+        fill.style.width = fill.dataset.w + '%';
+      });
+      document.querySelectorAll('.metric .fill').forEach(function (fill) {
+        fill.style.width = fill.dataset.w + '%';
+      });
+    }, 180);
+  });
+
+  refreshProgress();
+})();
+</script>
+</body>
+</html>
